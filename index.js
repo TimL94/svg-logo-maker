@@ -1,5 +1,5 @@
 const inquirer = require('inquirer');
-const { Shape , Triangle, Circle, Square } = require('./lib/shapes');
+const { Triangle, Circle, Square } = require('./lib/shapes');
 
 const validateInput = (input) => {
     if (input.length === 3) {
@@ -8,8 +8,12 @@ const validateInput = (input) => {
         return "Please enter exactly 3 characters.";
     }
 };
-const questions = async () => {
-    const answers = await inquirer.prompt([
+
+
+
+
+const questions = () => {
+    const answers = inquirer.prompt([
         {
             type: 'input',
             message: 'Enter three characters',
@@ -38,4 +42,19 @@ const questions = async () => {
             name: 'shapeColor'
         }
     ])
+    .then(answers => {
+        switch(answers.shape){
+            case 'Triangle':
+                var shape = new Triangle(answers.text, answers.textColor, answers.shapeColor);
+                break;
+            case 'Circle':
+                var shape = new Circle(answers.text, answers.textColor, answers.shapeColor);
+                break;
+            case 'Square':
+                var shape = new Square(answers.text, answers.textColor, answers.shapeColor);
+                break;
+        }
+    })
+
+    
 }
