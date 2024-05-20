@@ -1,4 +1,6 @@
 const inquirer = require('inquirer');
+
+const fs = require('fs');
 const { Triangle, Circle, Square } = require('./lib/shapes');
 
 const validateInput = (input) => {
@@ -12,8 +14,7 @@ const validateInput = (input) => {
 
 
 
-const questions = () => {
-    const answers = inquirer.prompt([
+const questions = [
         {
             type: 'input',
             message: 'Enter three characters',
@@ -31,7 +32,7 @@ const questions = () => {
             message: 'Choose your shape',
             name: 'shape',
             choices: [
-                'Traingle',
+                'Triangle',
                 'Circle',
                 'Square'
             ]
@@ -41,7 +42,10 @@ const questions = () => {
             message: 'enter a color or hex code for your shape',
             name: 'shapeColor'
         }
-    ])
+    ]
+
+function init() {
+    inquirer.prompt(questions)
     .then(answers => {
         switch(answers.shape){
             case 'Triangle':
@@ -54,7 +58,12 @@ const questions = () => {
                 var shape = new Square(answers.text, answers.textColor, answers.shapeColor);
                 break;
         }
-    })
+        const svg = shape.render();
+        fs.writeFile('logo.svg', svg, (error) => {
+            if (error) throw error;
+            console.log('The file has been saved!')
+        }
+        )
+})}
 
-    
-}
+init();
