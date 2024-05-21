@@ -12,8 +12,6 @@ const validateInput = (input) => {
 };
 
 
-
-
 const questions = [
         {
             type: 'input',
