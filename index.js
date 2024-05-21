@@ -1,8 +1,8 @@
 const inquirer = require('inquirer');
-
 const fs = require('fs');
 const { Triangle, Circle, Square } = require('./lib/shapes');
 
+// used to ensure that the use inputs exactly 3 characters
 const validateInput = (input) => {
     if (input.length === 3) {
         return true;
@@ -11,7 +11,7 @@ const validateInput = (input) => {
     }
 };
 
-
+// prompts the user for questions ans saves the information as data
 const questions = [
         {
             type: 'input',
@@ -42,6 +42,7 @@ const questions = [
         }
     ]
 
+    // intitializes the application and and creates and svg file based on user input
 function init() {
     inquirer.prompt(questions)
     .then(answers => {
@@ -64,4 +65,5 @@ function init() {
         )
 })}
 
+// calls the init function to start the application
 init();
