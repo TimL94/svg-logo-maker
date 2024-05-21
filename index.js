@@ -11,7 +11,7 @@ const validateInput = (input) => {
     }
 };
 
-// prompts the user for questions ans saves the information as data
+// prompts the user for questions and saves the information as data
 const questions = [
         {
             type: 'input',
@@ -42,7 +42,7 @@ const questions = [
         }
     ]
 
-    // intitializes the application and and creates and svg file based on user input
+    // intitializes the application and and creates an svg file based on user input
 function init() {
     inquirer.prompt(questions)
     .then(answers => {
